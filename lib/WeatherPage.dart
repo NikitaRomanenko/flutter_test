@@ -8,25 +8,31 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends BaseStatePage<WeatherPage> {
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+
   String _json = "empty";
+
+  @override
+  GlobalKey<ScaffoldState> getGlobalKey() => _globalKey;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _globalKey,
         body: Center(
-      child: SingleChildScrollView(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-            RaisedButton(
-                child: Text(" make request "),
-                onPressed: () {
-                  showLoadingDialog();
-                  fetchData();
-                }),
-            Text(_json)
-          ])),
-    ));
+          child: SingleChildScrollView(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                RaisedButton(
+                    child: Text(" make request "),
+                    onPressed: () {
+                      showLoadingDialog();
+                      fetchData();
+                    }),
+                Text(_json)
+              ])),
+        ));
   }
 
   void fetchData() async {
@@ -37,7 +43,16 @@ class _WeatherPageState extends BaseStatePage<WeatherPage> {
       setState(() {
         _json = responseString;
         Navigator.pop(context);
+        showDumpDialog();
       });
+    });
+  }
+
+  void showDumpDialog() {
+    showSimpleDialog("title", "message", positiveCallback: () {
+      showToast("positiveCallback");
+    }, negativeCallback: () {
+      showToast("negativeCallback");
     });
   }
 }

@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 abstract class BaseStatePage<T extends StatefulWidget> extends State<T> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
-  }
 
-  GlobalKey<ScaffoldState> getGlobalKey() {}
+  GlobalKey<ScaffoldState> getGlobalKey();
 
   void showToast(String text) {
     final scaffold = getGlobalKey().currentState;
@@ -21,7 +16,7 @@ abstract class BaseStatePage<T extends StatefulWidget> extends State<T> {
     );
   }
 
-  void showLoadingDialog() {
+  void showLoadingDialog([String message = "Loading..."]) {
     showDialog(
         context: context,
         barrierDismissible: true,
@@ -36,10 +31,39 @@ abstract class BaseStatePage<T extends StatefulWidget> extends State<T> {
               Padding(
                   padding: EdgeInsets.only(
                       left: 30.0, top: 20.0, right: 20.0, bottom: 20.0),
-                  child: new Text("Loading")),
+                  child: new Text(message)),
             ],
           ));
         });
+  }
+
+  void showSimpleDialog(String title, String message,
+      {Function positiveCallback,
+      Function negativeCallback,
+      String positiveButton = "Ok",
+      String negativeButton = "Close"}) {
+    showDialog(
+        context: context,
+        builder: (context) => new AlertDialog(
+              title: new Text(title),
+              content: new Text(message),
+              actions: <Widget>[
+                new FlatButton(
+                  child: new Text(negativeButton),
+                  onPressed: () {
+                    negativeCallback();
+                    Navigator.of(context).pop();
+                  },
+                ),
+                new FlatButton(
+                  child: new Text(positiveButton),
+                  onPressed: () {
+                    positiveCallback();
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ));
   }
 
   void goBack() {
