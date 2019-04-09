@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/BaseStatePage.dart';
 import 'package:flutter_app/MyListPage.dart';
 import 'package:flutter_app/WeatherPage.dart';
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => MyHomePage(title: 'page home'),
         '/list': (BuildContext context) => MyListPage(title: 'page list'),
         '/weather': (BuildContext context) => WeatherPage(),
@@ -43,8 +42,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends BaseStatePage<MyHomePage>  {
-
+class _MyHomePageState extends BaseStatePage<MyHomePage> {
   int _counter = 0;
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
@@ -64,7 +62,6 @@ class _MyHomePageState extends BaseStatePage<MyHomePage>  {
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -87,7 +84,7 @@ class _MyHomePageState extends BaseStatePage<MyHomePage>  {
           IconButton(
             icon: Icon(Icons.account_balance_wallet),
             onPressed: () {
-              super.showToast("qqq");
+              showToast("qqq");
             },
           )
         ],
@@ -117,17 +114,16 @@ class _MyHomePageState extends BaseStatePage<MyHomePage>  {
             ),
             Text(
               '$_counter',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .display1,
+              style: Theme.of(context).textTheme.display1,
             ),
             GestureDetector(
-                child: Text("Click here", style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue)),
+                child: Text("Click here",
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue)),
                 onTap: () {
                   Navigator.of(context).pushNamed('/list');
-                }
-            )
+                })
           ],
         ),
       ),
@@ -138,5 +134,4 @@ class _MyHomePageState extends BaseStatePage<MyHomePage>  {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
 }
