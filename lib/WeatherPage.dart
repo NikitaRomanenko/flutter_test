@@ -57,6 +57,7 @@ class _WeatherPageState extends BaseStatePage<WeatherPage> {
   }
 
   void showDumpDialog() {
+//    1
     showSimpleDialog("title", "message", positiveCallback: () {
       showToast("positiveCallback");
     }, negativeCallback: () {
