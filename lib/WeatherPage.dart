@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/BaseStatePage.dart';
+import 'package:flutter_app/WeatherPojo.dart';
 import 'package:http/http.dart' as http;
 
 class WeatherPage extends StatefulWidget {
@@ -10,7 +13,7 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends BaseStatePage<WeatherPage> {
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
-  String _json = "empty";
+  String _json_not_parsed = "empty";
 
   @override
   GlobalKey<ScaffoldState> getGlobalKey() => _globalKey;
@@ -30,7 +33,7 @@ class _WeatherPageState extends BaseStatePage<WeatherPage> {
                       showLoadingDialog();
                       fetchData();
                     }),
-                Text(_json)
+                Text(_json_not_parsed)
               ])),
         ));
   }
@@ -41,7 +44,12 @@ class _WeatherPageState extends BaseStatePage<WeatherPage> {
     http.get(url).then((response) {
       var responseString = response.body;
       setState(() {
-        _json = responseString;
+        _json_not_parsed = responseString;
+
+        final jsonResponse = json.decode(responseString);
+        WeatherPojo w = new WeatherPojo.fromJson(jsonResponse);
+        print(w.currently.ozone);
+
         Navigator.pop(context);
         showDumpDialog();
       });
