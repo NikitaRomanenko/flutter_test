@@ -62,6 +62,7 @@ class _WeatherPageState extends BaseStatePage<WeatherPage> {
 //    3
 //    4
 //  feature 1
+//  feature 2
     showSimpleDialog("title", "message", positiveCallback: () {
       showToast("positiveCallback");
     }, negativeCallback: () {
