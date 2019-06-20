@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/BaseStatePage.dart';
-import 'package:flutter_app/MyListPage.dart';
-import 'package:flutter_app/WeatherPage.dart';
+import 'package:flutter_app/test_list/MyListPage.dart';
+import 'package:flutter_app/test_weather/WeatherPage.dart';
 
 void main() => runApp(MyApp());
 

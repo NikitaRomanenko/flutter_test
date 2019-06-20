@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/BaseStatePage.dart';
-import 'package:flutter_app/WeatherPojo.dart';
+import 'package:flutter_app/test_weather/WeatherPojo.dart';
 import 'package:http/http.dart' as http;
 
 class WeatherPage extends StatefulWidget {
