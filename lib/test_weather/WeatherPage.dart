@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/BaseStatePage.dart';
-import 'package:flutter_app/WeatherPojo.dart';
+import 'package:flutter_app/test_weather/WeatherPojo.dart';
 import 'package:http/http.dart' as http;
 
 class WeatherPage extends StatefulWidget {
@@ -68,6 +68,7 @@ class _WeatherPageState extends BaseStatePage<WeatherPage> {
 //  feature 4
 //  feature 5
 //  feature 6 33 master
+//  feature 6_6 22 feature
     showSimpleDialog("title", "message", positiveCallback: () {
       showToast("positiveCallback");
     }, negativeCallback: () {

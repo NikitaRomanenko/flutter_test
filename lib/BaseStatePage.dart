@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 abstract class BaseStatePage<T extends StatefulWidget> extends State<T> {
-
   GlobalKey<ScaffoldState> getGlobalKey();
 
   void showToast(String text) {
@@ -16,6 +15,7 @@ abstract class BaseStatePage<T extends StatefulWidget> extends State<T> {
     );
   }
 
+  /// Can be used for button click
   void showLoadingDialog([String message = "Loading..."]) {
     showDialog(
         context: context,
@@ -35,6 +35,22 @@ abstract class BaseStatePage<T extends StatefulWidget> extends State<T> {
             ],
           ));
         });
+  }
+
+  /// Can be used as single UI element
+  Widget getLoadingWidget([String message = "Loading..."]) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+            padding: EdgeInsets.all(20.0),
+            child: new CircularProgressIndicator()),
+        Padding(
+            padding: EdgeInsets.only(
+                left: 30.0, top: 20.0, right: 20.0, bottom: 20.0),
+            child: new Text(message)),
+      ],
+    );
   }
 
   void showSimpleDialog(String title, String message,

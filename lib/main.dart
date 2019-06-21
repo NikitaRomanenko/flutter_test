@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/BaseStatePage.dart';
-import 'package:flutter_app/MyListPage.dart';
-import 'package:flutter_app/WeatherPage.dart';
+import 'package:flutter_app/test_list/MyListPage.dart';
+import 'package:flutter_app/test_weather/WeatherPage.dart';
+import 'package:flutter_app/test_weather/block_pattern/WeatherScreen_Bloc.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         '/home': (BuildContext context) => MyHomePage(title: 'page home'),
         '/list': (BuildContext context) => MyListPage(title: 'page list'),
         '/weather': (BuildContext context) => WeatherPage(),
+        '/weather_block': (BuildContext context) => WeatherScreen_Bloc(),
       },
     );
   }
@@ -123,7 +125,13 @@ class _MyHomePageState extends BaseStatePage<MyHomePage> {
                         color: Colors.blue)),
                 onTap: () {
                   Navigator.of(context).pushNamed('/list');
-                })
+                }),
+            RaisedButton(
+              child: Text("WeatherScreen_Block"),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/weather_block');
+              },
+            )
           ],
         ),
       ),
