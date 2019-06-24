@@ -70,9 +70,9 @@ class _WeatherPageState extends BaseStatePage<WeatherPage> {
 //  feature 6 33 master
 //  feature 6_6 22 feature
     showSimpleDialog("title", "message", positiveCallback: () {
-      showToast("positiveCallback");
+      showSnackBar("positiveCallback");
     }, negativeCallback: () {
-      showToast("negativeCallback");
+      showSnackBar("negativeCallback");
     });
   }
 }

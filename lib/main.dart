@@ -4,6 +4,8 @@ import 'package:flutter_app/test_list/MyListPage.dart';
 import 'package:flutter_app/test_weather/WeatherPage.dart';
 import 'package:flutter_app/test_weather/block_pattern/WeatherScreen_Bloc.dart';
 
+import 'Utils.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -86,7 +88,14 @@ class _MyHomePageState extends BaseStatePage<MyHomePage> {
           IconButton(
             icon: Icon(Icons.account_balance_wallet),
             onPressed: () {
-              showToast("qqq");
+              Utils.isNetworkAvailable.then((connected) {
+                print("Utils $connected");
+                if (connected) {
+                  showSnackBar("isNetworkAvailable = true");
+                } else {
+                  showSnackBar("isNetworkAvailable = false");
+                }
+              });
             },
           )
         ],

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 abstract class BaseStatePage<T extends StatefulWidget> extends State<T> {
   GlobalKey<ScaffoldState> getGlobalKey();
 
-  void showToast(String text) {
+  void showSnackBar(String text) {
     final scaffold = getGlobalKey().currentState;
     scaffold.showSnackBar(
       SnackBar(

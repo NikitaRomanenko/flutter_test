@@ -73,7 +73,7 @@ class _MyListPageState extends BaseStatePage<MyListPage> {
               RaisedButton(
                 child: Text('Buttorn $i'),
                 onPressed: () {
-                  showToast("button $i");
+                  showSnackBar("button $i");
                 },
               )
             ],
