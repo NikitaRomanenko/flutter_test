@@ -5,6 +5,8 @@ class Repository {
   final weatherProvider = NetworkDataProvider();
 
   Future<WeatherPojo> fetchWeather() {
+    print("weather block fetchWeather()");
+
     return weatherProvider.fetchWeather();
   }
 }

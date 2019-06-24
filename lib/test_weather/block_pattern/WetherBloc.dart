@@ -23,6 +23,31 @@ class WeatherBloc {
   void dispose() {
     _weatherStreamController.close();
   }
+
+  /// Send both api-calls at same time, process result for each request when get response for it.
+  /// And "final" then called when both api-calls will be done.
+  void loadDataParallelRequests() {
+    Future.wait([
+      _repository.fetchWeather().then((v) {
+        print("weather result 1 api-call");
+      }),
+      _repository.fetchWeather().then((v) {
+        print("weather result 2 api-call");
+      })
+    ]).then((v) {
+      print("weather result when all chain done");
+    });
+  }
+
+  /// Send first request and print result, than send second request and print result.
+  void loadDataConsistentlyRequests() {
+    _repository.fetchWeather().then((onValue) {
+      print("weather result 1 api-call");
+      return _repository.fetchWeather();
+    }).then((onValue) {
+      print("weather result 2 api-call");
+    });
+  }
 }
 
 class WeatherState {
