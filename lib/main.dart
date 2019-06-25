@@ -3,6 +3,7 @@ import 'package:flutter_app/BaseStatePage.dart';
 import 'package:flutter_app/test_list/MyListPage.dart';
 import 'package:flutter_app/test_weather/WeatherPage.dart';
 import 'package:flutter_app/test_weather/block_pattern/WeatherScreen_Bloc.dart';
+import 'package:flutter_app/web_view/WebViewPage.dart';
 
 import 'Utils.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/list': (BuildContext context) => MyListPage(title: 'page list'),
         '/weather': (BuildContext context) => WeatherPage(),
         '/weather_block': (BuildContext context) => WeatherScreen_Bloc(),
+        '/webview': (BuildContext context) => WebViewPage(),
       },
     );
   }
@@ -30,15 +32,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -127,6 +120,12 @@ class _MyHomePageState extends BaseStatePage<MyHomePage> {
               child: Text("WeatherScreen_Block"),
               onPressed: () {
                 Navigator.of(context).pushNamed('/weather_block');
+              },
+            ),
+            RaisedButton(
+              child: Text("WebView_test"),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/webview');
               },
             )
           ],
