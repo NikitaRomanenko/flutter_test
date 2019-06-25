@@ -66,12 +66,7 @@ class _MyHomePageState extends BaseStatePage<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+  _checkInternet();
     return Scaffold(
       key: _globalKey,
       appBar: AppBar(
@@ -88,14 +83,7 @@ class _MyHomePageState extends BaseStatePage<MyHomePage> {
           IconButton(
             icon: Icon(Icons.account_balance_wallet),
             onPressed: () {
-              Utils.isNetworkAvailable.then((connected) {
-                print("Utils $connected");
-                if (connected) {
-                  showSnackBar("isNetworkAvailable = true");
-                } else {
-                  showSnackBar("isNetworkAvailable = false");
-                }
-              });
+              showSnackBar("SnackBar test");
             },
           )
         ],
@@ -150,5 +138,16 @@ class _MyHomePageState extends BaseStatePage<MyHomePage> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void _checkInternet(){
+    Utils.isNetworkAvailable.then((connected) {
+      print("Utils $connected");
+      if (connected) {
+        showSnackBar("isNetworkAvailable = true");
+      } else {
+        showSnackBar("isNetworkAvailable = false");
+      }
+    });
   }
 }
